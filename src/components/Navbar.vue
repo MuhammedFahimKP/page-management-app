@@ -40,7 +40,7 @@
     props: ['pages','activePage','navLinkClick'],
     data(){
       return {
-        theme:"light"
+        theme:"dark"
       };
     },
     methods:{
