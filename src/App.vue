@@ -4,6 +4,10 @@
         :active-page="activePage"
         :nav-link-click="(index) => activePage = index"
     ></navbar>
+
+    <div
+        v-show="false"
+    >Hide</div>
     <page-viewer
         :page="pages[activePage]"
     ></page-viewer>
@@ -21,33 +25,22 @@
        Navbar,
 
      },
+     created() {
+        this.getPages()
+     },
      data(){
        return {
          activePage:0,
-         useDarkNavbar:false,
-
-
-
-         pages:[
-           {
-             link:{text:'Home',url: 'home.html'},
-             content:'this Home Page',
-             title:'Home Page'
-           },
-           {
-             link:{text:'About',url: 'about.html'},
-             content:'this About Page',
-             title:'About Page'
-           },
-           {
-             link:{text:'Contact',url: 'contact.html'},
-             content:'this Contact Page',
-             title:'Contact Page'
-           }
-
-         ]
+         pages:[]
        } ;
      },
+     methods:{
+        async getPages() {
+           let res  =  await fetch('pages.json');
+           let data =  await  res.json();
+           this.pages = data;
+        }
+     }
    }
 
 
