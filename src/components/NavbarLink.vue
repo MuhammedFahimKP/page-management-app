@@ -35,7 +35,7 @@
 
 
 
-<style>
+<style scoped>
   .emphasize {
     color: #08af40 !important;
   }

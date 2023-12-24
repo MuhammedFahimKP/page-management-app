@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li v-for="(page,index) in pages"  class="nav-item active">
+        <li v-for="(page,index) in publishedPages"  class="nav-item active">
           <navbar-link
             :page="page"
             :isActive="activePage == index"
@@ -38,6 +38,14 @@
       NavbarLink,
 
     },
+    created(){
+      this.getThemeSettings()
+    },
+    computed:{
+      publishedPages() {
+          return this.pages.filter(p => p.published);
+      }
+    },
     props: ['pages','activePage','navLinkClick'],
     data(){
       return {
@@ -57,7 +65,19 @@
         }
 
         this.theme = theme;
+        this.storeThemeSettings()
 
+
+      },
+      storeThemeSettings(){
+          localStorage.setItem('theme',this.theme)
+      },
+      getThemeSettings(){
+          let theme = localStorage.getItem('theme')
+          if (theme) {
+            this.theme = theme;
+
+          }
       }
     }
 

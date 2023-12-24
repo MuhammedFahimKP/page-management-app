@@ -2,17 +2,20 @@
   {
     "link":{"text":"Home","url": "home.html"},
     "content":"this Home Page",
-    "title":"Home Page"
+    "title":"Home Page",
+    "published":true
   },
   {
     "link":{"text":"About","url": "about.html"},
     "content":"this About Page",
-    "title":"About Page"
+    "title":"About Page",
+    "published":true
   },
   {
     "link":{"text":"Contact","url": "contact.html"},
     "content":"this Contact Page",
-    "title":"Contact Page"
+    "title":"Contact Page",
+    "published":false
   }
 
 ]
