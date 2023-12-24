@@ -11,7 +11,7 @@
 
 
   <creat-page
-      :page-created="pageCreated"
+      @page-created="pageCreated"
   ></creat-page>
 
 </template>

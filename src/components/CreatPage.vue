@@ -71,11 +71,23 @@
 <script>
 
     export default {
-          props:[
-              'pageCreated',
+          emits:{
+            pageCreated({title,content,link}){
+              if (!title) {
+                return false
+              }
 
+              if (!content) {
+                return false
+              }
 
-          ],
+              if (!link || !link.text || !link.url) {
+                return false
+              }
+
+              return true
+            },
+          },
           computed:{
             isFormInvalid() {
               return !this.title||!this.content||!this.linkText||!this.linkUrl
@@ -99,7 +111,7 @@
                  return;
               }
 
-              this.pageCreated({
+              this.$emit('pageCreated',{
                 title:this.title,
                 content:this.content,
                 link:{
@@ -117,7 +129,15 @@
 
 
             }
+          },
+          watch:{
+              title(newTitle,oldTitle) {
+                  if (this.linkText == oldTitle){
+                      this.linkText = newTitle;
+                  }
+              }
           }
+
     }
 
 </script>

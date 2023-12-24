@@ -4,7 +4,7 @@
   <a class="nav-link"
      :class="activeClasses"
      :href="page.link.url"
-     :title="`this is {{page.link.text}} page`"
+     :title="`this is ${page.link.text} page`"
   >{{page.link.text}}</a>
 
 
