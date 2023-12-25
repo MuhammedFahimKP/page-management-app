@@ -18,7 +18,7 @@ export default {
     },
 
     $emit(eventName,data){
-        if (event.has(eventName)) {
+        if (events.has(eventName)) {
 
             events.get(eventName).forEach(fn => fn(data))
         }
