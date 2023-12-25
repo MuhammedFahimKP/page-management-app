@@ -15,7 +15,7 @@
     "link":{"text":"Contact","url": "contact.html"},
     "content":"this Contact Page",
     "title":"Contact Page",
-    "published":false
+    "published":true
   }
 
 ]

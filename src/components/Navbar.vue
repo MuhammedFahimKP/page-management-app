@@ -10,13 +10,24 @@
           <navbar-link
 
               v-for="(page,index) in publishedPages"
-              :indexer = "index"
+              :index = "index"
               :page="page"
               :isActive="activePage == index"
               @actived="$emit('actived')"
 
           >
           </navbar-link>
+
+        <li class="nav-item active">
+          <router-link
+
+              :to="`pages/create`"
+              class="nav-link"
+              active-class="active"
+
+          >CreatePage</router-link>
+        </li>
+
 
       </ul>
       <form class="d-flex justify-content-end">
@@ -43,17 +54,20 @@
 
     },
     created(){
+      this.pages = this.$pages.getAllPages()
       this.getThemeSettings()
+
     },
     computed:{
       publishedPages() {
           return this.pages.filter(p => p.published);
       }
     },
-    props: ['pages','activePage'],
+    props: ['activePage'],
     data(){
       return {
-        theme:"light"
+        theme:"light",
+        pages : []
       };
     },
     methods:{

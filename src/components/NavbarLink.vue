@@ -1,12 +1,14 @@
 <template>
 
   <li class="nav-item active">
-    <a class="nav-link"
-       :class="activeClasses"
-       :href="page.link.url"
+    <router-link
+        :to="`/${index}`"
+        class="nav-link"
+        active-class="active"
+        :href="page.link.url"
        :title="`this is ${page.link.text} page`"
-       @click.prevent = "$bus.$emit('navbarLinkActivated',indexer)"
-    >{{page.link.text}}</a>
+
+    >{{page.link.text}}</router-link>
   </li>
 
 
@@ -21,16 +23,8 @@
 
     export  default {
 
-        props:['page','isActive','indexer'],
-        computed:{
-          activeClasses(){
-            return {
-              active:this.isActive,
-              emphasize:this.isActive
-            }
+        props:['page','isActive','index'],
 
-          }
-        }
 
 
     }
@@ -39,8 +33,3 @@
 
 
 
-<style scoped>
-  .emphasize {
-    color: #08af40 !important;
-  }
-</style>
