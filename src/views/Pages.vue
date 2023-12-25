@@ -1,7 +1,7 @@
 <template>
 
   <div class="container">
-    <h2>Page Mangement</h2>
+    <h1>Page Mangement</h1>
     <router-view></router-view>
   </div>
 

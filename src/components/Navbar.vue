@@ -21,7 +21,7 @@
         <li class="nav-item active">
           <router-link
 
-              :to="`pages/create`"
+              :to="`/pages/create`"
               class="nav-link"
               active-class="active"
 
@@ -64,6 +64,7 @@
       }
     },
     props: ['activePage'],
+    inject:['$pages'],
     data(){
       return {
         theme:"light",

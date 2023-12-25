@@ -11,6 +11,12 @@ const app = createApp(App)
 app.use(router);
 
 app.config.globalProperties.$bus = $bus;
-app.config.globalProperties.$pages = $pages;
+
+// app.config.globalProperties.$pages = $pages;
+// `we cannot access the global varibale inside the child components of router component `;
+
+app.provide('$pages',$pages);
+
+
 
 app.mount("#app");
