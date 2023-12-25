@@ -53,7 +53,7 @@
     props: ['pages','activePage'],
     data(){
       return {
-        theme:"dark"
+        theme:"light"
       };
     },
     methods:{

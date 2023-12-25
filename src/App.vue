@@ -4,14 +4,17 @@
         :active-page="activePage"
     ></navbar>
 
+
+    <router-view></router-view>
 <!--    <page-viewer-->
+<!--        v-if="pages.length > 0"-->
 <!--        :page="pages[activePage]"-->
 <!--    ></page-viewer>-->
 
 
-  <creat-page
-      @page-created="pageCreated"
-  ></creat-page>
+<!--  <creat-page-->
+<!--      @page-created="pageCreated"-->
+<!--  ></creat-page>-->
 
 </template>
 
