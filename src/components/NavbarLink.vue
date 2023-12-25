@@ -1,12 +1,13 @@
 <template>
 
-
-  <a class="nav-link"
-     :class="activeClasses"
-     :href="page.link.url"
-     :title="`this is ${page.link.text} page`"
-  >{{page.link.text}}</a>
-
+  <li class="nav-item active">
+    <a class="nav-link"
+       :class="activeClasses"
+       :href="page.link.url"
+       :title="`this is ${page.link.text} page`"
+       @click.prevent = "$bus.$emit('navbarLinkActivated',indexer)"
+    >{{page.link.text}}</a>
+  </li>
 
 
 </template>
@@ -15,9 +16,12 @@
 
 <script>
 
+
+
+
     export  default {
 
-        props:['page','isActive'],
+        props:['page','isActive','indexer'],
         computed:{
           activeClasses(){
             return {

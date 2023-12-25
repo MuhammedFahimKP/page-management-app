@@ -6,14 +6,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li v-for="(page,index) in publishedPages"  class="nav-item active">
+
           <navbar-link
-            :page="page"
-            :isActive="activePage == index"
-            @click.prevent="navLinkClick(index)"
+
+              v-for="(page,index) in publishedPages"
+              :indexer = "index"
+              :page="page"
+              :isActive="activePage == index"
+              @actived="$emit('actived')"
+
           >
           </navbar-link>
-        </li>
+
       </ul>
       <form class="d-flex justify-content-end">
         <button
@@ -46,7 +50,7 @@
           return this.pages.filter(p => p.published);
       }
     },
-    props: ['pages','activePage','navLinkClick'],
+    props: ['pages','activePage'],
     data(){
       return {
         theme:"dark"
