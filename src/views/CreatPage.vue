@@ -35,17 +35,7 @@
 
           />
         </div>
-        <div class="mb-3">
-          <label for="" class="form-label">
-            Link URL
-          </label>
-          <input
-              type="text"
-              class="form-control"
-              v-model="linkUrl"
 
-          />
-        </div>
         <div class="row mb-3">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" v-model="published">
@@ -67,79 +57,69 @@
   </div>
 </template>
 
+<script setup>
 
-<script>
+  import {ref,inject,computed,watch} from 'vue'
+  import {useRouter} from "vue-router";
+  import routers from "../routers.js";
 
-    export default {
-          emits:{
-            pageCreated({title,content,link}){
-              if (!title) {
-                return false
-              }
+  const pages  = inject('$pages')
+  const bus    = inject('$bus');
+  const router = useRouter();
 
-              if (!content) {
-                return false
-              }
-
-              if (!link || !link.text || !link.url) {
-                return false
-              }
-
-              return true
-            },
-          },
-          computed:{
-            isFormInvalid() {
-              return !this.title||!this.content||!this.linkText||!this.linkUrl
-            }
-          },
-          data() {
-            return {
-              title: '',
-              content:'',
-              linkText:'',
-              linkUrl:'',
-              published:false,
-
-            }
-          },
-          methods:{
-
-            submitForm(e){
-              if (!this.title||!this.content||!this.linkText||!this.linkUrl){
-                 alert('please fill form');
-                 return;
-              }
-
-              this.$emit('pageCreated',{
-                title:this.title,
-                content:this.content,
-                link:{
-                  text:this.linkText,
-                  url:this.linkUrl
-                },
-                published:this.published
-              });
-
-              this.title     = '';
-              this.content   = '';
-              this.linkUrl   = ''
-              this.linkText  = '';
-              this.published = false;
+  let title     = ref('');
+  let content   = ref('');
+  let linkText  = ref('');
+  let published = ref(true);
 
 
-            }
-          },
-          watch:{
-              title(newTitle,oldTitle) {
-                  if (this.linkText == oldTitle){
-                      this.linkText = newTitle;
-                  }
-              }
-          }
+
+
+  function submitForm(){
+    if (!title||!content||!linkText){
+      alert('please fill form');
+      return;
+    }
+
+    let newPage = {
+      title:title.value,
+      content:content.value,
+      link : {
+        text : linkText.value,
+        url  : `${linkText.value}.html`
+      }
 
     }
 
+    pages.addPage(newPage);
+
+    bus.$emit('page-created',newPage);
+
+    router.push({path:'/pages'})
+
+
+
+
+  }
+
+  const isFormInvalid = computed(() =>  !title||!content||!linkText)
+  watch(title,(newTitle,oldTitle) => {
+
+
+          if (linkText.value == oldTitle) {
+            linkText.value = newTitle;
+          }
+  })
+
+
+
+
+
+
 </script>
+
+
+
+
 
 
